@@ -1,0 +1,15 @@
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/white" android:drawable="" android:state_pressed="true" /> &lt;!&ndash; pressed &ndash;&gt;
+    <item android:color="@color/white" android:state_focused="true" /> &lt;!&ndash; focused &ndash;&gt;
+    <item android:color="@android:color/darker_gray" /> &lt;!&ndash; default &ndash;&gt;
+</selector>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="24.0dp">
+        <shape >
+            <solid android:color="#fefefe"  />
+        </shape>
+    </item>
+</layer-list>
