@@ -64,6 +64,12 @@ class SignupFragment : BaseFragment() {
                 binding?.edtConfirmPassword?.requestFocus()
             } else {
                 Toast.makeText(getActivityContext, "" + fullName, Toast.LENGTH_SHORT).show()
+                getActivityContext?.replaceFragment(
+                    VerificationFragment("SIGNUP"),
+                    VerificationFragment::class.java.simpleName,
+                    true,
+                    true
+                )
             }
         })
 

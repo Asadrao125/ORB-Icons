@@ -43,7 +43,12 @@ class LoginFragment : BaseFragment() {
                 edtPassword.setError("Password Length")
                 edtPassword.requestFocus()
             } else {
-                Toast.makeText(getActivityContext, "" + email, Toast.LENGTH_SHORT).show()
+                getActivityContext?.replaceFragment(
+                    HomeFragment(),
+                    HomeFragment::class.java.simpleName,
+                    true,
+                    true
+                )
             }
         })
 

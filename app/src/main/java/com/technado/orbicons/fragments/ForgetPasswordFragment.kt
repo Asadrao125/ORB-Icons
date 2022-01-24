@@ -39,6 +39,12 @@ class ForgetPasswordFragment : BaseFragment() {
                 edtEmail.requestFocus()
             } else {
                 Toast.makeText(getActivityContext, "" + email, Toast.LENGTH_SHORT).show()
+                getActivityContext?.replaceFragment(
+                    VerificationFragment("FORGET"),
+                    VerificationFragment::class.java.simpleName,
+                    true,
+                    true
+                )
             }
         })
 

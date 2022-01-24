@@ -66,6 +66,7 @@ class PreLoginFragment : BaseFragment() {
 
         tvAccept.setOnClickListener(View.OnClickListener {
             if (i == 1) {
+                getActivityContext!!.clearBackStack()
                 getActivityContext?.replaceFragment(
                     HomeFragment(),
                     HomeFragment::class.java.simpleName,

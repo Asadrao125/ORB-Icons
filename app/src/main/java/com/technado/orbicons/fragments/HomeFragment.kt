@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment() {
         installedAppsList = ArrayList()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            saveListInLocal(getInstalledApps())
+            recyclerView.adapter = AppsAdapter(getActivityContext!!, getInstalledApps())
         }, 500)
 
         return binding?.root
