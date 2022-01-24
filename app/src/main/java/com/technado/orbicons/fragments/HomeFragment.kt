@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment() {
         installedAppsList = ArrayList()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            recyclerView.adapter = AppsAdapter(getActivityContext!!, getInstalledApps())
+            setAdapter(getInstalledApps())
         }, 500)
 
         return binding?.root
@@ -85,6 +85,7 @@ class HomeFragment : BaseFragment() {
         val json = gson.toJson(list)
         editor.putString("apps", json)
         editor.apply()
+        Log.d("apps_list", "saveListInLocal: " + prefs.getString("apps", null))
         //setAdapter(getDataInArrayList())
     }
 

@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.technado.orbicons.R
 import com.technado.orbicons.helper.RecyclerItemClickListener
 import com.technado.orbicons.model.AppModel
+import java.lang.Exception
 
 class AppsAdapter(var context: Context, var list: List<AppModel>) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
