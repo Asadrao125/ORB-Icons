@@ -1,6 +1,7 @@
 package com.technado.orbicons.fragments
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.os.Bundle
@@ -13,6 +14,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
 import com.technado.orbicons.adapter.AppsAdapter
@@ -24,7 +27,6 @@ class HomeFragment : BaseFragment() {
     var binding: HomeFragmentBinding? = null
     lateinit var recyclerView: RecyclerView
     private lateinit var installedAppsList: ArrayList<AppModel>
-    lateinit var appList: ArrayList<AppModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,24 +40,21 @@ class HomeFragment : BaseFragment() {
         recyclerView.layoutManager = GridLayoutManager(getActivityContext, 4)
         recyclerView.setHasFixedSize(true)
 
-        appList = ArrayList()
         installedAppsList = ArrayList()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            appList.clear()
-            appList = getInstalledApps()
-            setAdapter(recyclerView, appList)
+            saveListInLocal(getInstalledApps())
         }, 500)
 
         return binding?.root
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-       titlebar.resetTitlebar()
+        titlebar.resetTitlebar()
     }
 
-    fun setAdapter(recyclerView: RecyclerView, appList: ArrayList<AppModel>) {
-        recyclerView.adapter = AppsAdapter(getActivityContext!!, appList)
+    fun setAdapter(dataInArrayList: ArrayList<AppModel>) {
+        recyclerView.adapter = AppsAdapter(getActivityContext!!, dataInArrayList)
     }
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -77,5 +76,22 @@ class HomeFragment : BaseFragment() {
 
     private fun isSystemPackage(pkgInfo: PackageInfo): Boolean {
         return pkgInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+    }
+
+    fun saveListInLocal(list: ArrayList<AppModel>) {
+        val prefs = getActivityContext!!.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
+        val editor = prefs.edit()
+        val gson = Gson()
+        val json = gson.toJson(list)
+        editor.putString("apps", json)
+        editor.apply()
+        //setAdapter(getDataInArrayList())
+    }
+
+    fun getDataInArrayList(): ArrayList<AppModel> {
+        val prefs = getActivityContext!!.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
+        val json = prefs.getString("apps", null)
+        val type = object : TypeToken<ArrayList<AppModel>>() {}.type
+        return Gson().fromJson(json, type)
     }
 }

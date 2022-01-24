@@ -62,6 +62,4 @@ dependencies {
     implementation 'com.mobsandgeeks:android-saripaar:2.0.2'
     //Circle Imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    // Material Edittext
-    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 }
