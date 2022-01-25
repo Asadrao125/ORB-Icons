@@ -47,6 +47,7 @@ class Titlebar : RelativeLayout {
         setHideTitle()
         binding?.tvTitleRed?.visibility = VISIBLE
         binding?.tvTitleWhite?.visibility = GONE
+
         binding?.ivBack?.visibility = View.GONE
         binding?.ivMenu?.visibility = View.VISIBLE
         binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
@@ -61,6 +62,39 @@ class Titlebar : RelativeLayout {
         binding?.ivBack?.setOnClickListener(OnClickListener {
             getActivityContext.onBackPressed()
         })
+    }
+
+    fun setTitleSecond(getActivityContext: MainActivity, title: String) {
+        setHideTitle()
+        binding?.tvTitleRed?.visibility = GONE
+        binding?.tvTitleWhite?.visibility = VISIBLE
+
+        binding?.ivBack?.visibility = View.VISIBLE
+        binding?.ivMenu?.visibility = View.GONE
+        binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
+
+        binding?.tvTitleRed?.text = title
+        binding?.tvTitleWhite?.text = title
+
+        binding?.ivMenu?.setOnClickListener {
+            getActivityContext.openDrawer()
+        }
+
+        binding?.ivBack?.setOnClickListener(OnClickListener {
+            getActivityContext.onBackPressed()
+        })
+    }
+
+    fun setTitleThird(getActivityContext: MainActivity, title: String) {
+        setHideTitle()
+        binding?.tvTitleRed?.visibility = GONE
+        binding?.tvTitleWhite?.visibility = VISIBLE
+
+        binding?.ivBack?.visibility = View.GONE
+        binding?.ivMenu?.visibility = View.GONE
+        binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
+
+        binding?.tvTitleWhite?.text = title
     }
 
     fun setHideTitle() {

@@ -22,6 +22,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         setMainFrameLayoutID()
         setListener()
+
+        binding?.imgClose?.setOnClickListener(View.OnClickListener {
+            closeDrawers()
+        })
+
+        binding?.imgUpload?.setOnClickListener(View.OnClickListener {
+            replaceFragment(EditProfileFragment(), EditProfileFragment::class.java.simpleName, true, false)
+            closeDrawers()
+        })
+
         replaceFragment(PreLoginFragment(), PreLoginFragment::class.java.simpleName, true, false)
     }
 
@@ -43,10 +53,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             val fragmentManager = supportFragmentManager
             val fragments: List<Fragment> = fragmentManager.fragments
             val last: Fragment = fragments.get(fragments.size - 1)
-
             supportFragmentManager.popBackStack()
-
         } else {
+            finish()
             //val exitDialog = ExitDialog()
             //exitDialog.show(supportFragmentManager, "exitDialog")
         }
@@ -98,7 +107,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 replaceFragment(
                     DownloadsFragment(),
                     DownloadsFragment::class.java.simpleName,
-                    false,
+                    true,
                     true
                 )
                 closeDrawers()
@@ -106,9 +115,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             R.id.llTersAndConditions -> {
                 replaceFragment(
-                    TermsAndConditionsFragment(),
-                    TermsAndConditionsFragment::class.java.simpleName,
-                    false,
+                    TCandPPFragment("Terms & Conditions"),
+                    TCandPPFragment::class.java.simpleName,
+                    true,
                     true
                 )
                 closeDrawers()
@@ -116,9 +125,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             R.id.llPrivacyPolicy -> {
                 replaceFragment(
-                    PrivacyPolicyFragment(),
-                    PrivacyPolicyFragment::class.java.simpleName,
-                    false,
+                    TCandPPFragment("Privacy Policy"),
+                    TCandPPFragment::class.java.simpleName,
+                    true,
                     true
                 )
                 closeDrawers()
@@ -128,7 +137,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 replaceFragment(
                     ChangePasswordFragment(),
                     ChangePasswordFragment::class.java.simpleName,
-                    false,
+                    true,
                     true
                 )
                 closeDrawers()

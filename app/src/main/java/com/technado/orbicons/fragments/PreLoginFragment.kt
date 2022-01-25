@@ -43,7 +43,7 @@ class PreLoginFragment : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.resetTitlebar()
+        titlebar.setTitleThird(getActivityContext!!, "Pre Login")
     }
 
     private fun agreementDialog(i: Int) {

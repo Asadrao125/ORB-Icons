@@ -48,6 +48,6 @@ class ChangePasswordFragment : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.resetTitlebar()
+        titlebar.setTitleSecond(getActivityContext!!, "Change Password")
     }
 }
