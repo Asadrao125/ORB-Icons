@@ -20,6 +20,9 @@ class TCandPPFragment(val title: String) : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_t_cand_p_p, container, false)
+
+        getActivityContext!!.lockMenu()
+
         return binding!!.root
     }
 

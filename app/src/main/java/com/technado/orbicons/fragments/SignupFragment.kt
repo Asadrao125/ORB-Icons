@@ -28,6 +28,8 @@ class SignupFragment : BaseFragment() {
             getActivityContext?.onBackPressed()
         })
 
+        getActivityContext!!.lockMenu()
+
         binding?.imageLayout?.setOnClickListener(View.OnClickListener {
 
         })

@@ -23,6 +23,8 @@ class ResetPasswordFragment : BaseFragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_reset_password, container, false)
 
+        getActivityContext!!.lockMenu()
+
         binding?.btnReset?.setOnClickListener(View.OnClickListener {
             val newPassword = binding?.edtNewPassword?.text.toString().trim()
             val confirmPassword = binding?.edtConfirmPassword?.text.toString().trim()

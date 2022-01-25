@@ -22,6 +22,8 @@ class LoginFragment : BaseFragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
+        getActivityContext!!.lockMenu()
+
         binding?.btnLogin?.setOnClickListener(View.OnClickListener {
 
             val email = binding?.edtEmail?.text.toString().trim()

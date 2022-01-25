@@ -22,6 +22,8 @@ class ChangePasswordFragment : BaseFragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_change_password, container, false)
 
+        getActivityContext!!.lockMenu()
+
         binding?.btnChangePassword?.setOnClickListener(View.OnClickListener {
             val currentPassword = binding?.edtCurrentPassword?.text.toString().trim()
             val newPassword = binding?.edtCurrentPassword?.text.toString().trim()

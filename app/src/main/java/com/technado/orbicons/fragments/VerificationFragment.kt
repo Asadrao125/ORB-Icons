@@ -26,6 +26,8 @@ class VerificationFragment(val signupORforgetpassword: String) : BaseFragment() 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_verification, container, false)
 
+        getActivityContext!!.lockMenu()
+
         binding!!.otpView.setOtpCompletionListener(OnOtpCompletionListener {
             Toast.makeText(getActivityContext, "" + it, Toast.LENGTH_SHORT).show()
             code = it

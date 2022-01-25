@@ -24,6 +24,8 @@ class ForgetPasswordFragment : BaseFragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_forget_password, container, false)
+        
+        getActivityContext!!.lockMenu()
 
         binding?.btnSendCode?.setOnClickListener(View.OnClickListener {
             val email = binding?.edtEmail?.text.toString().trim()

@@ -39,6 +39,8 @@ class PreLoginFragment : BaseFragment() {
             agreementDialog(0)
         })
 
+        getActivityContext!!.lockMenu()
+
         return binding?.root
     }
 

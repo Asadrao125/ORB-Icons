@@ -34,11 +34,14 @@ class HomeFragment : BaseFragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+
         getActivityContext()?.unlockMenu()
 
         recyclerView = binding!!.recyclerView
         recyclerView.layoutManager = GridLayoutManager(getActivityContext, 4)
         recyclerView.setHasFixedSize(true)
+
+        getActivityContext!!.unlockMenu()
 
         installedAppsList = ArrayList()
 

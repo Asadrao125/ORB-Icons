@@ -22,6 +22,8 @@ class EditProfileFragment : BaseFragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_edit_profile, container, false)
 
+        getActivityContext!!.lockMenu()
+
         binding?.imgUpload?.setOnClickListener(View.OnClickListener {
 
         })
