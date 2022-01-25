@@ -12,6 +12,7 @@ import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.textfield.TextInputEditText
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
 import com.technado.orbicons.databinding.LoginFragmentBinding
@@ -20,8 +21,8 @@ import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment() {
     var binding: LoginFragmentBinding? = null
-    lateinit var edtPassword: EditText
-    var showHide: Boolean = false
+    lateinit var edtPassword: TextInputEditText
+    lateinit var edtEmail: TextInputEditText
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -33,9 +34,9 @@ class LoginFragment : BaseFragment() {
         getActivityContext!!.lockMenu()
 
         edtPassword = binding?.edtPassword!!
+        edtEmail = binding?.edtEmail!!
 
         binding?.btnLogin?.setOnClickListener(View.OnClickListener {
-
             val email = binding?.edtEmail?.text.toString().trim()
             val password = binding?.edtPassword?.text.toString().trim()
 
@@ -80,18 +81,6 @@ class LoginFragment : BaseFragment() {
                 true,
                 true
             )
-        })
-
-        binding?.imgeye?.setOnClickListener(View.OnClickListener {
-            if (showHide) {
-                edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding?.imgeye!!.setImageDrawable(resources.getDrawable(R.drawable.ic_close_eye))
-                showHide = false
-            } else {
-                edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                binding?.imgeye!!.setImageDrawable(resources.getDrawable(R.drawable.ic_open_eye))
-                showHide = true
-            }
         })
 
         return binding?.root

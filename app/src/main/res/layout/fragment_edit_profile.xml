@@ -26,7 +26,9 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_20sdp">
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/circle"
+                android:padding="@dimen/_1sdp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
@@ -45,31 +47,27 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_80sdp"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@drawable/selector_edittext"
+                android:hint="Full Name"
+                app:boxBackgroundMode="none">
 
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:src="@drawable/user" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/user"
                     android:drawablePadding="@dimen/_10sdp"
                     android:hint="Full Name"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
                     android:textColor="@color/white"
-                    android:textColorHint="@android:color/darker_gray" />
+                    android:textColorHint="@color/red" />
 
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnDone"

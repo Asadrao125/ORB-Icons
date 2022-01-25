@@ -78,30 +78,6 @@ class SignupFragment : BaseFragment() {
             }
         })
 
-        binding?.imgeye1?.setOnClickListener(View.OnClickListener {
-            if (showHide) {
-                edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding?.imgeye1!!.setImageDrawable(resources.getDrawable(R.drawable.ic_close_eye))
-                showHide = false
-            } else {
-                edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                binding?.imgeye1!!.setImageDrawable(resources.getDrawable(R.drawable.ic_open_eye))
-                showHide = true
-            }
-        })
-
-        binding?.imgeye2?.setOnClickListener(View.OnClickListener {
-            if (showHide) {
-                edtConfirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding?.imgeye2!!.setImageDrawable(resources.getDrawable(R.drawable.ic_close_eye))
-                showHide = false
-            } else {
-                edtConfirmPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                binding?.imgeye2!!.setImageDrawable(resources.getDrawable(R.drawable.ic_open_eye))
-                showHide = true
-            }
-        })
-
         return binding!!.root
     }
 

@@ -46,10 +46,7 @@
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="end"
                     android:layout_margin="@dimen/_10sdp"
-                    android:background="@drawable/white_shape"
-                    android:padding="@dimen/_5sdp"
-                    android:src="@drawable/cross"
-                    app:tint="@color/black" />
+                    android:src="@drawable/cross2" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -66,6 +63,8 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/circle"
+                            android:padding="@dimen/_1sdp"
                             android:src="@mipmap/ic_launcher"
                             app:civ_border_color="@color/white"
                             app:civ_border_width="1dp" />
@@ -76,7 +75,7 @@
                             android:layout_height="@dimen/_25sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
-                            android:src="@drawable/upload" />
+                            android:src="@drawable/edit" />
 
                     </RelativeLayout>
 
