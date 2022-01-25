@@ -14,6 +14,6 @@
     <color name="red">#ed1b24</color>
     <color name="dark_blue">#001645</color>
 
-    <color name="trans">#66000000</color>
+    <color name="trans">#00000000</color>
 
 </resources>

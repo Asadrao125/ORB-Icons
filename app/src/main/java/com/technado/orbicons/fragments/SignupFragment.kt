@@ -1,6 +1,8 @@
 package com.technado.orbicons.fragments
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : BaseFragment() {
     var binding: SignupFragmentBinding? = null
+    var showHide: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +75,30 @@ class SignupFragment : BaseFragment() {
                     true,
                     true
                 )
+            }
+        })
+
+        binding?.imgeye1?.setOnClickListener(View.OnClickListener {
+            if (showHide) {
+                edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding?.imgeye1!!.setImageDrawable(resources.getDrawable(R.drawable.ic_close_eye))
+                showHide = false
+            } else {
+                edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding?.imgeye1!!.setImageDrawable(resources.getDrawable(R.drawable.ic_open_eye))
+                showHide = true
+            }
+        })
+
+        binding?.imgeye2?.setOnClickListener(View.OnClickListener {
+            if (showHide) {
+                edtConfirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding?.imgeye2!!.setImageDrawable(resources.getDrawable(R.drawable.ic_close_eye))
+                showHide = false
+            } else {
+                edtConfirmPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding?.imgeye2!!.setImageDrawable(resources.getDrawable(R.drawable.ic_open_eye))
+                showHide = true
             }
         })
 
