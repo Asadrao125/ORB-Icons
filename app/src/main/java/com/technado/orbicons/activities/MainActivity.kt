@@ -28,7 +28,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         })
 
         binding?.imgUpload?.setOnClickListener(View.OnClickListener {
-            replaceFragment(EditProfileFragment(), EditProfileFragment::class.java.simpleName, true, false)
+            replaceFragment(
+                EditProfileFragment(),
+                EditProfileFragment::class.java.simpleName,
+                true,
+                false
+            )
             closeDrawers()
         })
 
