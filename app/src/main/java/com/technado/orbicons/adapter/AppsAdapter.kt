@@ -238,15 +238,6 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         dialog.show()
     }
 
-    fun saveListInLocal(list: ArrayList<AppModel>) {
-        val prefs = context.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
-        val editor = prefs.edit()
-        val gson = Gson()
-        val json = gson.toJson(list)
-        editor.putString("apps", json)
-        editor.apply()
-    }
-
     fun convertBitmapToString(bitmap: Bitmap): String? {
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)

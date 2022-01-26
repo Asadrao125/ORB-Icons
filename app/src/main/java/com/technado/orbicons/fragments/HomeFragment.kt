@@ -142,25 +142,6 @@ class HomeFragment : BaseFragment() {
         return bitmap
     }
 
-    /*fun saveListInLocal(list: ArrayList<AppModel>) {
-        val prefs = getActivityContext!!.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
-        val editor = prefs.edit()
-        val gson = Gson()
-        val json = gson.toJson(list)
-        editor.putString("apps", json)
-        editor.apply()
-        sharedPref.write("size", "" + list.size)
-        Log.d("apps_list", "saveListInLocal: " + prefs.getString("apps", null))
-        setAdapter(getDataInArrayList())
-    }
-
-    fun getDataInArrayList(): ArrayList<AppModel> {
-        val prefs = getActivityContext!!.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
-        val json = prefs.getString("apps", null)
-        val type = object : TypeToken<ArrayList<AppModel>>() {}.type
-        return Gson().fromJson(json, type)
-    }*/
-
     override fun setTitlebar(titlebar: Titlebar) {
         titlebar.resetTitlebar()
     }
