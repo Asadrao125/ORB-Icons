@@ -3,6 +3,7 @@ package com.technado.orbicons.helper
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.technado.orbicons.model.AppModel
@@ -49,6 +50,25 @@ open class PreferenceHelper {
         val editor = preferences.edit()
         editor.putString(key, value)
         editor.apply()
+    }
+
+    companion object {
+        fun setAllAppsLocal(list: ArrayList<AppModel>, context: Context): Boolean {
+            val prefs = context.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
+            val editor = prefs.edit()
+            val gson = Gson()
+            val json = gson.toJson(list)
+            editor.putString("apps", json)
+            editor.apply()
+            return true
+        }
+
+        fun getAllAppsLocal(context: Context): ArrayList<AppModel> {
+            val prefs = context.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
+            val json = prefs.getString("apps", null)
+            val type = object : TypeToken<ArrayList<AppModel>>() {}.type
+            return Gson().fromJson(json, type)
+        }
     }
 
     protected fun getStringPreference(

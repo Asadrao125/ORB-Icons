@@ -56,8 +56,8 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
                         android:layout_gravity="center">
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -119,7 +119,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Home"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -148,7 +148,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Downloads"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -176,7 +176,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Tearms &amp; Conditions"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -205,7 +205,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Privacy Policy"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -234,7 +234,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Change Password"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -263,7 +263,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:text="Logout"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>

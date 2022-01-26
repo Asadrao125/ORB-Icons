@@ -43,7 +43,8 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/title_curve"
                 android:hint="App Title"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -53,6 +54,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="20dp"
             tools:listitem="@layout/item_image" />
 

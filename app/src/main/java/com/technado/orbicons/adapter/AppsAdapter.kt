@@ -1,18 +1,23 @@
 package com.technado.orbicons.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.util.Log
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,25 +25,32 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.technado.orbicons.R
 import com.technado.orbicons.helper.RecyclerItemClickListener
+import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.model.AppModel
-import java.lang.Exception
+import java.io.ByteArrayOutputStream
 
-class AppsAdapter(var context: Context, var list: List<AppModel>) :
+class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
-    lateinit var iconNew: Drawable
+    lateinit var iconNew: String
     lateinit var adapter: ImageAdapter
+    lateinit var sharedPref: SharedPref
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View =
             LayoutInflater.from(context).inflate(R.layout.item_apps, parent, false)
+        sharedPref = SharedPref(context)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.appName.text = list.get(position).name
-        holder.image.setImageDrawable(list.get(position).icon)
+
+        Glide.with(context).load(StringToBitMap(list.get(position).icon))
+            .placeholder(R.drawable.change_password).into(holder.image)
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             val intent =
@@ -49,6 +61,16 @@ class AppsAdapter(var context: Context, var list: List<AppModel>) :
         holder.itemView.setOnLongClickListener {
             optionsDialog(list.get(position).name, position)
             return@setOnLongClickListener true
+        }
+    }
+
+    fun StringToBitMap(encodedString: String?): Bitmap? {
+        return try {
+            val encodeByte: ByteArray = Base64.decode(encodedString, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
+        } catch (e: Exception) {
+            e.message
+            null
         }
     }
 
@@ -177,17 +199,15 @@ class AppsAdapter(var context: Context, var list: List<AppModel>) :
         imageRecyclerView.adapter = adapter
 
         tvTitle.text = "Edit - " + title
-        imgApp.setImageDrawable(list.get(position).icon)
+        imgApp.setImageBitmap(StringToBitMap(list.get(position).icon))
         edtTitle.setText(title)
 
         imageRecyclerView.addOnItemTouchListener(
             RecyclerItemClickListener(context, imageRecyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-
                         imgApp.setImageDrawable(imageList.get(position))
-
-                        iconNew = imageList.get(position)
+                        iconNew = convertBitmapToString(drawableToBitmap(imageList.get(position))!!)!!
                         adapter.selectedPos = position
                         adapter.notifyDataSetChanged()
                     }
@@ -205,6 +225,7 @@ class AppsAdapter(var context: Context, var list: List<AppModel>) :
                 list.get(position).name = edtTitle.text.toString().trim()
                 list.get(position).icon = iconNew
                 notifyItemChanged(position)
+                sharedPref.setAllAppsLocal(list)
                 dialog.dismiss()
             }
         })
@@ -216,4 +237,48 @@ class AppsAdapter(var context: Context, var list: List<AppModel>) :
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
+
+    fun saveListInLocal(list: ArrayList<AppModel>) {
+        val prefs = context.getSharedPreferences("prefsName", Activity.MODE_PRIVATE)
+        val editor = prefs.edit()
+        val gson = Gson()
+        val json = gson.toJson(list)
+        editor.putString("apps", json)
+        editor.apply()
+    }
+
+    fun convertBitmapToString(bitmap: Bitmap): String? {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        val byteArray: ByteArray = stream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
+
+    fun drawableToBitmap(drawable: Drawable): Bitmap? {
+        var bitmap: Bitmap? = null
+        if (drawable is BitmapDrawable) {
+            val bitmapDrawable = drawable
+            if (bitmapDrawable.bitmap != null) {
+                return bitmapDrawable.bitmap
+            }
+        }
+        bitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+            Bitmap.createBitmap(
+                1,
+                1,
+                Bitmap.Config.ARGB_8888
+            )
+        } else {
+            Bitmap.createBitmap(
+                drawable.intrinsicWidth,
+                drawable.intrinsicHeight,
+                Bitmap.Config.ARGB_8888
+            )
+        }
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
+        drawable.draw(canvas)
+        return bitmap
+    }
+
 }
