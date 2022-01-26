@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data class="DownloadsFragmentBinding" />
+    <data class="IconPacksFragmentBinding" />
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -26,7 +26,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:itemCount="1"
             tools:listitem="@layout/item_icon_pack" />
 
     </LinearLayout>

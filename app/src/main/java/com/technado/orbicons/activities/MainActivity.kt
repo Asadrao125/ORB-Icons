@@ -47,6 +47,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         binding?.llPrivacyPolicy?.setOnClickListener(this)
         binding?.llChangePasword?.setOnClickListener(this)
         binding?.llLogout?.setOnClickListener(this)
+        binding?.llIconPacks?.setOnClickListener(this)
     }
 
     fun getTitlebar(): Titlebar {
@@ -112,6 +113,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 replaceFragment(
                     DownloadsFragment(),
                     DownloadsFragment::class.java.simpleName,
+                    true,
+                    true
+                )
+                closeDrawers()
+            }
+
+            R.id.llIconPacks -> {
+                replaceFragment(
+                    IconPackskFragment(),
+                    IconPackskFragment::class.java.simpleName,
                     true,
                     true
                 )

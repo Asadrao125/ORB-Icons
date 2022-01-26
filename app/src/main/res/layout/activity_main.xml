@@ -154,6 +154,35 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llIconPacks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/selector"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/white_shape"
+                            android:src="@drawable/downloads" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:text="Icon Pack"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/llTersAndConditions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

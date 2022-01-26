@@ -35,7 +35,7 @@ import java.io.ByteArrayOutputStream
 
 class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
-    lateinit var iconNew: String
+    var iconNew: String = ""
     lateinit var adapter: ImageAdapter
     lateinit var sharedPref: SharedPref
 
@@ -207,7 +207,8 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         imgApp.setImageDrawable(imageList.get(position))
-                        iconNew = convertBitmapToString(drawableToBitmap(imageList.get(position))!!)!!
+                        iconNew =
+                            convertBitmapToString(drawableToBitmap(imageList.get(position))!!)!!
                         adapter.selectedPos = position
                         adapter.notifyDataSetChanged()
                     }
@@ -221,6 +222,8 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         btnUpdate.setOnClickListener(View.OnClickListener {
             if (edtTitle.text.toString().trim().isEmpty()) {
                 Toast.makeText(context, "Title Required", Toast.LENGTH_SHORT).show()
+            } else if (iconNew.isEmpty()) {
+                Toast.makeText(context, "Please Select Icon", Toast.LENGTH_SHORT).show()
             } else {
                 list.get(position).name = edtTitle.text.toString().trim()
                 list.get(position).icon = iconNew

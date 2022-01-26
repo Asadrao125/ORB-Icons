@@ -76,7 +76,7 @@ class HomeFragment : BaseFragment() {
         val someHandler = Handler(getMainLooper())
         someHandler.postDelayed(object : Runnable {
             override fun run() {
-                binding?.tvTime?.setText(SimpleDateFormat("hh : mm ss a", Locale.US).format(Date()))
+                binding?.tvTime?.setText(SimpleDateFormat("hh : mm a", Locale.US).format(Date()))
                 someHandler.postDelayed(this, 1000)
             }
         }, 10)
