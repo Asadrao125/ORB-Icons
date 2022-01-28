@@ -106,16 +106,11 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_options)
         val tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
-        val btnClose = dialog.findViewById(R.id.btnClose) as Button
         val unInstall = dialog.findViewById(R.id.unInstall) as LinearLayout
         val edit = dialog.findViewById(R.id.edit) as LinearLayout
         val appInfo = dialog.findViewById(R.id.appInfo) as LinearLayout
         val imgCross = dialog.findViewById(R.id.imgCross) as ImageView
         tvTitle.text = title
-
-        btnClose.setOnClickListener(View.OnClickListener {
-            dialog.dismiss()
-        })
 
         unInstall.setOnClickListener(View.OnClickListener {
             dialog.dismiss()

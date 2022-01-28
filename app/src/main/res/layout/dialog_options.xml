@@ -61,12 +61,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_delete"
-                    app:tint="@color/black" />
+                    app:tint="@color/dark_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:text="Uninstall"
                     android:textColor="@color/black" />
 
@@ -80,7 +81,7 @@
             <LinearLayout
                 android:id="@+id/edit"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector"
                 android:gravity="center"
@@ -91,12 +92,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_edit_2"
-                    app:tint="@color/black" />
+                    app:tint="@color/dark_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:text="Edit"
                     android:textColor="@color/black" />
 
@@ -110,7 +112,7 @@
             <LinearLayout
                 android:id="@+id/appInfo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/selector"
                 android:gravity="center"
@@ -121,30 +123,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/info"
-                    app:tint="@color/black" />
+                    app:tint="@color/dark_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:text="App Info"
                     android:textColor="@color/black" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnClose"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/btn_orange"
-            android:text="Close"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:visibility="gone" />
 
     </LinearLayout>
 
