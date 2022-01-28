@@ -53,6 +53,7 @@
                 android:layout_marginTop="@dimen/_50sdp"
                 android:background="@drawable/selector_edittext"
                 android:hint="Full Name"
+                android:textColorHint="@color/red"
                 app:boxBackgroundMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -61,7 +62,6 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/user"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:hint="Full Name"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColor="@color/white"

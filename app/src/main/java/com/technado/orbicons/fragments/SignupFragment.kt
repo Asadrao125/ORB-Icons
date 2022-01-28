@@ -1,5 +1,9 @@
 package com.technado.orbicons.fragments
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -9,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
@@ -16,6 +21,8 @@ import com.technado.orbicons.databinding.LoginFragmentBinding
 import com.technado.orbicons.databinding.SignupFragmentBinding
 import com.technado.orbicons.helper.Titlebar
 import kotlinx.android.synthetic.main.fragment_signup.*
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 class SignupFragment : BaseFragment() {
     var binding: SignupFragmentBinding? = null
@@ -34,7 +41,9 @@ class SignupFragment : BaseFragment() {
         getActivityContext!!.lockMenu()
 
         binding?.imageLayout?.setOnClickListener(View.OnClickListener {
-
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, 124)
         })
 
         binding?.btnSignup?.setOnClickListener(View.OnClickListener {
@@ -79,6 +88,21 @@ class SignupFragment : BaseFragment() {
         })
 
         return binding!!.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == AppCompatActivity.RESULT_OK && data != null && requestCode == 124) {
+            try {
+                val imageUri: Uri = data.data!!
+                val imageStream: InputStream =
+                    getActivityContext!!.getContentResolver().openInputStream(imageUri)!!
+                val bitmap: Bitmap = BitmapFactory.decodeStream(imageStream)
+                binding?.imageProfile?.setImageBitmap(bitmap)
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun setTitlebar(titlebar: Titlebar) {

@@ -41,12 +41,15 @@
                         android:layout_gravity="center"
                         android:background="@drawable/circle">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center"
-                            android:src="@drawable/camera" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle"
+                            android:padding="@dimen/_1sdp"
+                            android:src="@mipmap/ic_launcher"
+                            app:civ_border_color="@color/white"
+                            app:civ_border_width="1dp" />
 
                     </RelativeLayout>
 
@@ -56,6 +59,7 @@
                         android:layout_marginTop="@dimen/_50sdp"
                         android:background="@drawable/selector_edittext"
                         android:hint="Full Name"
+                        android:textColorHint="@color/red"
                         app:boxBackgroundMode="none">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -64,7 +68,6 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/user"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Full Name"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:textColor="@color/white"
@@ -78,6 +81,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/selector_edittext"
                         android:hint="Email"
+                        android:textColorHint="@color/red"
                         app:boxBackgroundMode="none">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -86,7 +90,6 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/email"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Email"
                             android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/white"
@@ -100,6 +103,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/selector_edittext"
                         android:hint="Password"
+                        android:textColorHint="@color/red"
                         app:boxBackgroundMode="none"
                         app:endIconMode="password_toggle"
                         app:passwordToggleEnabled="true">
@@ -110,7 +114,6 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/password"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Password"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
@@ -124,6 +127,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/selector_edittext"
                         android:hint="Confirm Password"
+                        android:textColorHint="@color/red"
                         app:boxBackgroundMode="none"
                         app:endIconMode="password_toggle"
                         app:passwordToggleEnabled="true">
@@ -134,7 +138,6 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/password"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:hint="Confirm Password"
                             android:imeOptions="actionDone"
                             android:inputType="textPassword"
                             android:textColor="@color/white"

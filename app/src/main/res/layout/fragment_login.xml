@@ -34,6 +34,7 @@
                     android:layout_marginTop="@dimen/_50sdp"
                     android:background="@drawable/selector_edittext"
                     android:hint="Email"
+                    android:textColorHint="@color/red"
                     app:boxBackgroundMode="none">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -42,7 +43,6 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/email"
                         android:drawablePadding="@dimen/_10sdp"
-                        android:hint="Email"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:textColor="@color/white"
@@ -56,6 +56,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/selector_edittext"
                     android:hint="Password"
+                    android:textColorHint="@color/red"
                     app:boxBackgroundMode="none"
                     app:endIconMode="password_toggle"
                     app:passwordToggleEnabled="true">
@@ -66,7 +67,6 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/password"
                         android:drawablePadding="@dimen/_10sdp"
-                        android:hint="Password"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:textColor="@color/white"

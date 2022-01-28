@@ -18,7 +18,6 @@ import com.technado.orbicons.helper.Titlebar
 import java.io.FileNotFoundException
 import java.io.InputStream
 
-
 class MainActivity : BaseActivity(), View.OnClickListener {
     var binding: MainActivityBinding? = null
 
