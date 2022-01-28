@@ -28,10 +28,9 @@ class IconPackAdapter(var context: Context, var list: ArrayList<String>) :
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //var imageView: ImageView
 
         init {
-            //imageView = itemView.findViewById(R.id.imageView)
+
         }
     }
 }

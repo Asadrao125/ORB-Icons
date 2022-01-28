@@ -19,11 +19,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.technado.orbicons.R
+import com.technado.orbicons.helper.IconPacks
 import com.technado.orbicons.helper.RecyclerItemClickListener
 import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.model.AppModel
@@ -153,41 +153,53 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         val btnUpdate = dialog.findViewById(R.id.btnUpdate) as Button
         val btnClose = dialog.findViewById(R.id.btnClose) as Button
         val imageRecyclerView = dialog.findViewById(R.id.imageRecyclerView) as RecyclerView
+        val spIconPacks = dialog.findViewById(R.id.spIconPacks) as Spinner
 
         btnClose.setOnClickListener(View.OnClickListener {
             dialog.dismiss()
         })
 
-        val imageList: ArrayList<Drawable> = ArrayList()
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone1)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.instagram)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone2)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
-
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone1)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.instagram)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone2)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
-
         imageRecyclerView.layoutManager = GridLayoutManager(context, 4)
         imageRecyclerView.setHasFixedSize(true)
-
-        adapter = ImageAdapter(context, imageList)
-        imageRecyclerView.adapter = adapter
 
         tvTitle.text = "Edit - " + title
         imgApp.setImageBitmap(StringToBitMap(list.get(position).icon))
         edtTitle.setText(title)
 
+        /*val iconPackList: ArrayList<Drawable> = IconPacks.getIconPack1(context)
+        adapter = ImageAdapter(context, iconPackList)
+        imageRecyclerView.adapter = adapter*/
+
+        spIconPacks.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                if (p2 == 0) {
+                    setAdapter(imageRecyclerView, IconPacks.getIconPack1(context))
+                } else if (p2 == 1) {
+                    setAdapter(imageRecyclerView, IconPacks.getIconPack2(context))
+                } else if (p2 == 2) {
+                    setAdapter(imageRecyclerView, IconPacks.getIconPack3(context))
+                } else if (p2 == 3) {
+                    setAdapter(imageRecyclerView, IconPacks.getIconPack4(context))
+                } else if (p2 == 4) {
+                    setAdapter(imageRecyclerView, IconPacks.getIconPack5(context))
+                }
+            }
+        }
+
         imageRecyclerView.addOnItemTouchListener(
             RecyclerItemClickListener(context, imageRecyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-                        imgApp.setImageDrawable(imageList.get(position))
+                        imgApp.setImageDrawable(IconPacks.getIconPack1(context).get(position))
                         iconNew =
-                            convertBitmapToString(drawableToBitmap(imageList.get(position))!!)!!
+                            convertBitmapToString(
+                                drawableToBitmap(
+                                    IconPacks.getIconPack1(context).get(position)
+                                )!!
+                            )!!
                         adapter.selectedPos = position
                         adapter.notifyDataSetChanged()
                     }
@@ -218,6 +230,11 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         )
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
+    }
+
+    fun setAdapter(imageRecyclerView: RecyclerView, iconPackList: ArrayList<Drawable>) {
+        adapter = ImageAdapter(context, iconPackList)
+        imageRecyclerView.adapter = adapter
     }
 
     fun convertBitmapToString(bitmap: Bitmap): String? {

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="30dp"
+    android:layout_margin="@dimen/_15sdp"
     app:cardCornerRadius="@dimen/_5sdp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/imgApp"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_launcher" />
 
@@ -46,12 +47,24 @@
                 android:padding="10dp"
                 android:visibility="gone" />
 
+            <Spinner
+                android:id="@+id/spIconPacks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:entries="@array/iconPacks" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/imageRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/buttonLayout"
+            android:layout_below="@id/topLayout"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="@dimen/_10sdp"
@@ -59,8 +72,10 @@
             tools:listitem="@layout/item_image" />
 
         <LinearLayout
+            android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -90,6 +105,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

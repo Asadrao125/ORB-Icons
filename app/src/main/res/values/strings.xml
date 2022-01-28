@@ -12,4 +12,12 @@
         <item>Dummy Text</item>
     </array>
 
+    <array name="iconPacks">
+        <item>Icon Pack 1</item>
+        <item>Icon Pack 2</item>
+        <item>Icon Pack 3</item>
+        <item>Icon Pack 4</item>
+        <item>Icon Pack 5</item>
+    </array>
+
 </resources>

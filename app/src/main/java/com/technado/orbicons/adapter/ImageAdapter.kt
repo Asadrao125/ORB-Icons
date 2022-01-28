@@ -23,11 +23,11 @@ class ImageAdapter(var context: Context, var list: ArrayList<Drawable>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.imageView.setImageDrawable(list.get(position))
 
-        holder.imageView.setBackgroundColor(
+        /*holder.imageView.setBackgroundColor(
             if (selectedPos == position) Color.parseColor("#E0E0E0") else Color.parseColor(
                 "#FFFFFF"
             )
-        )
+        )*/
 
     }
 
