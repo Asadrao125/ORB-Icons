@@ -1,7 +1,6 @@
 package com.technado.orbicons.adapter
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
 import android.app.PendingIntent
 import android.content.Context
@@ -17,6 +16,9 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
+import android.provider.Settings
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +28,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
 import com.technado.orbicons.R
 import com.technado.orbicons.helper.RecyclerItemClickListener
 import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.model.AppModel
 import java.io.ByteArrayOutputStream
+
 
 class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
@@ -122,10 +124,21 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         }
     }
 
-    fun unInstallApp(pkgName: String) {
-        val intent = Intent(Intent.ACTION_DELETE)
-        intent.data = Uri.parse(pkgName)
-        context.startActivity(intent)
+    fun unInstallApp(pkgName: String, position: Int) {
+        var intent: Intent? = null
+        intent = if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
+            Intent(Intent.ACTION_UNINSTALL_PACKAGE)
+        } else {
+            Intent(Intent.ACTION_DELETE)
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.data = Uri.fromParts("package", pkgName, null)
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent)
+        }
+        list.removeAt(position)
+        notifyDataSetChanged()
+        sharedPref.setAllAppsLocal(list)
     }
 
     private fun optionsDialog(title: String, position: Int) {
@@ -137,6 +150,7 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         val unInstall = dialog.findViewById(R.id.unInstall) as LinearLayout
         val share = dialog.findViewById(R.id.share) as LinearLayout
         val edit = dialog.findViewById(R.id.edit) as LinearLayout
+        val appInfo = dialog.findViewById(R.id.appInfo) as LinearLayout
         val imgCross = dialog.findViewById(R.id.imgCross) as ImageView
         tvTitle.text = title
 
@@ -146,6 +160,7 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
 
         unInstall.setOnClickListener(View.OnClickListener {
             dialog.dismiss()
+            unInstallApp(list.get(position).packages, position)
         })
 
         share.setOnClickListener(View.OnClickListener {
@@ -155,6 +170,15 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         edit.setOnClickListener(View.OnClickListener {
             editDialog(title, position)
             dialog.dismiss()
+        })
+
+        appInfo.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            val uri = Uri.fromParts("package", list.get(position).packages, null)
+            intent.data = uri
+            context.startActivity(intent)
         })
 
         imgCross.setOnClickListener(View.OnClickListener {
