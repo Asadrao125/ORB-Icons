@@ -59,16 +59,13 @@ class HomeFragment : BaseFragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (sharedPref.read("apps", "").equals("")) {
-                Log.d("looper", "onCreateView: IF-IF-IF-IF")
                 val list: ArrayList<AppModel> = getInstalledApps()
 
                 if (!sharedPref.read("size", "").equals("" + list.size)) {
                     setAdapter(sharedPref.setAllAppsLocal(list))
                     sharedPref.write("size", "" + list.size)
                 }
-
             } else {
-                Log.d("looper", "onCreateView: ELSE-ELSE")
                 setAdapter(sharedPref.getAllAppsLocal())
             }
         }, 500)
@@ -93,7 +90,13 @@ class HomeFragment : BaseFragment() {
                     for (l in 0 until oldList.size) {
                         val serviceName: String = oldList.get(l).name.toLowerCase()
                         if (serviceName.contains(s.toString().toLowerCase())) {
-                            newlist.add(AppModel(oldList.get(l).name, oldList.get(l).icon, oldList.get(l).packages))
+                            newlist.add(
+                                AppModel(
+                                    oldList.get(l).name,
+                                    oldList.get(l).icon,
+                                    oldList.get(l).packages
+                                )
+                            )
                         }
                     }
                     adapter = AppsAdapter(getActivityContext!!, newlist)

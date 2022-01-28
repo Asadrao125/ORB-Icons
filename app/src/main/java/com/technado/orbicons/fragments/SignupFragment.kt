@@ -26,7 +26,6 @@ import java.io.InputStream
 
 class SignupFragment : BaseFragment() {
     var binding: SignupFragmentBinding? = null
-    var showHide: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
