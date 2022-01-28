@@ -148,7 +148,6 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         val tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
         val btnClose = dialog.findViewById(R.id.btnClose) as Button
         val unInstall = dialog.findViewById(R.id.unInstall) as LinearLayout
-        val share = dialog.findViewById(R.id.share) as LinearLayout
         val edit = dialog.findViewById(R.id.edit) as LinearLayout
         val appInfo = dialog.findViewById(R.id.appInfo) as LinearLayout
         val imgCross = dialog.findViewById(R.id.imgCross) as ImageView
@@ -161,10 +160,6 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         unInstall.setOnClickListener(View.OnClickListener {
             dialog.dismiss()
             unInstallApp(list.get(position).packages, position)
-        })
-
-        share.setOnClickListener(View.OnClickListener {
-            dialog.dismiss()
         })
 
         edit.setOnClickListener(View.OnClickListener {
