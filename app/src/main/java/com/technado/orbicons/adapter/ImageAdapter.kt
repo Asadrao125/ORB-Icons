@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.technado.orbicons.R
 
@@ -24,10 +25,17 @@ class ImageAdapter(var context: Context, var list: ArrayList<Drawable>) :
         holder.imageView.setImageDrawable(list.get(position))
 
         /*holder.imageView.setBackgroundColor(
-            if (selectedPos == position) Color.parseColor("#E0E0E0") else Color.parseColor(
-                "#FFFFFF"
-            )
+            if (selectedPos == position) {
+                Color.parseColor("#E0E0E0")
+            } else {
+                Color.parseColor("#FFFFFF")
+            }
         )*/
+
+        if (selectedPos == position) {
+            holder.itemView.background =
+                ContextCompat.getDrawable(context, R.drawable.app_selector_background)!!
+        }
 
     }
 

@@ -55,7 +55,9 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:entries="@array/iconPacks" />
+                android:background="@drawable/title_curve"
+                android:entries="@array/iconPacks"
+                android:padding="@dimen/_8sdp" />
 
         </LinearLayout>
 
