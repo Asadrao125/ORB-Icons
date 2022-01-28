@@ -1,12 +1,8 @@
 package com.technado.orbicons.adapter
 
-import android.annotation.SuppressLint
 import android.app.Dialog
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -14,7 +10,6 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
@@ -33,7 +28,6 @@ import com.technado.orbicons.helper.RecyclerItemClickListener
 import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.model.AppModel
 import java.io.ByteArrayOutputStream
-
 
 class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
@@ -87,40 +81,6 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         init {
             appName = itemView.findViewById(R.id.appName)
             image = itemView.findViewById(R.id.image)
-        }
-    }
-
-    @SuppressLint("NewApi")
-    fun createWebActivityShortcut(position: Int) {
-        val shortcutManager = ContextCompat.getSystemService<ShortcutManager>(
-            context,
-            ShortcutManager::class.java
-        )
-        if (shortcutManager!!.isRequestPinShortcutSupported) {
-            val pinShortcutInfoBuilder = ShortcutInfo.Builder(context, list.get(position).name)
-            pinShortcutInfoBuilder.setShortLabel(list.get(position).name)
-            val intent =
-                context.packageManager.getLaunchIntentForPackage(list.get(position).packages)
-            pinShortcutInfoBuilder.setIntent(intent!!)
-            pinShortcutInfoBuilder.setIcon(
-                Icon.createWithResource(
-                    context,
-                    R.drawable.ic_launcher_background
-                )
-            )
-            val pinShortcutInfo = pinShortcutInfoBuilder.build()
-
-            val pinnedShortcutCallbackIntent = shortcutManager.createShortcutResultIntent(
-                pinShortcutInfo
-            )
-            val successCallback = PendingIntent.getBroadcast(
-                context, 0,
-                pinnedShortcutCallbackIntent, 0
-            )
-            shortcutManager.requestPinShortcut(
-                pinShortcutInfo,
-                successCallback.intentSender
-            )
         }
     }
 
@@ -298,5 +258,4 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         drawable.draw(canvas)
         return bitmap
     }
-
 }
