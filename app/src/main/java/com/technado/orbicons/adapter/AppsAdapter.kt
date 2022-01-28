@@ -130,13 +130,14 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
 
     private fun optionsDialog(title: String, position: Int) {
         val dialog = Dialog(context)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_options)
         val tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
         val btnClose = dialog.findViewById(R.id.btnClose) as Button
         val unInstall = dialog.findViewById(R.id.unInstall) as LinearLayout
         val share = dialog.findViewById(R.id.share) as LinearLayout
         val edit = dialog.findViewById(R.id.edit) as LinearLayout
+        val imgCross = dialog.findViewById(R.id.imgCross) as ImageView
         tvTitle.text = title
 
         btnClose.setOnClickListener(View.OnClickListener {
@@ -144,15 +145,19 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         })
 
         unInstall.setOnClickListener(View.OnClickListener {
-
+            dialog.dismiss()
         })
 
         share.setOnClickListener(View.OnClickListener {
-
+            dialog.dismiss()
         })
 
         edit.setOnClickListener(View.OnClickListener {
             editDialog(title, position)
+            dialog.dismiss()
+        })
+
+        imgCross.setOnClickListener(View.OnClickListener {
             dialog.dismiss()
         })
 
@@ -166,7 +171,7 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
 
     private fun editDialog(title: String, position: Int) {
         val dialog = Dialog(context)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_edit)
         val tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
         val imgApp = dialog.findViewById(R.id.imgApp) as ImageView
@@ -180,17 +185,17 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         })
 
         val imageList: ArrayList<Drawable> = ArrayList()
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_share)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_uninstall)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_edit)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone1)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.instagram)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone2)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
 
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_share)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_uninstall)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_edit)!!)
-
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_share)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_uninstall)!!)
-        imageList.add(ContextCompat.getDrawable(context, R.drawable.ic_edit)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone1)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.instagram)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone2)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
+        imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
 
         imageRecyclerView.layoutManager = GridLayoutManager(context, 4)
         imageRecyclerView.setHasFixedSize(true)

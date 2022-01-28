@@ -81,13 +81,13 @@ class HomeFragment : BaseFragment() {
             }
         }, 10)
 
-        val sdf = SimpleDateFormat("dd MMM yyyy")
+        val sdf = SimpleDateFormat("EEEE, dd MMM")
         binding?.tvDate?.text = sdf.format(Date())
 
         binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 val text = s.toString()
-                if (text.length > 0) {
+                if (text.length >= 0) {
                     val newlist: ArrayList<AppModel> = ArrayList()
                     val oldList: ArrayList<AppModel> = sharedPref.getAllAppsLocal()
                     for (l in 0 until oldList.size) {
