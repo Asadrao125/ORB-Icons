@@ -105,6 +105,6 @@ class SignupFragment : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.resetTitlebar()
+        titlebar.setTitleSecond(getActivityContext!!, "Signup")
     }
 }

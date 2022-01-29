@@ -24,7 +24,7 @@ class ForgetPasswordFragment : BaseFragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_forget_password, container, false)
-        
+
         getActivityContext!!.lockMenu()
 
         binding?.btnSendCode?.setOnClickListener(View.OnClickListener {
@@ -54,6 +54,6 @@ class ForgetPasswordFragment : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.resetTitlebar()
+        titlebar.setTitleSecond(getActivityContext!!, "Forget Password")
     }
 }

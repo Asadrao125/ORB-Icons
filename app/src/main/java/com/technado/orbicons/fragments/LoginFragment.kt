@@ -87,6 +87,6 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.resetTitlebar()
+        titlebar.setTitleSecond(getActivityContext!!, "Login")
     }
 }

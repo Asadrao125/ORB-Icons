@@ -8,23 +8,23 @@
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_20sdp">
+        android:layout_marginTop="@dimen/_23sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.technado.orbicons.helper.Titlebar
-                android:id="@+id/titlebar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_35sdp">
 
             <FrameLayout
                 android:id="@+id/mainContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/titlebar" />
+                android:layout_height="match_parent" />
+
+            <com.technado.orbicons.helper.Titlebar
+                android:id="@+id/titlebar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 

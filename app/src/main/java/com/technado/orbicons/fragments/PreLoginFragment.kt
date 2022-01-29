@@ -24,7 +24,7 @@ class PreLoginFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pre_login, container, false)
 
         binding?.loginWithGoogle?.setOnClickListener(View.OnClickListener {
@@ -41,7 +41,7 @@ class PreLoginFragment : BaseFragment() {
 
         getActivityContext!!.lockMenu()
 
-        return binding?.root
+        return binding!!.root
     }
 
     override fun setTitlebar(titlebar: Titlebar) {

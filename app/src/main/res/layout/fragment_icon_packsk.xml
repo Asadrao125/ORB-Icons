@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background2"
         android:orientation="vertical"
+        android:paddingTop="@dimen/_50sdp"
         tools:context=".fragments.LoginFragment">
 
         <TextView

@@ -44,10 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Title"
-            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

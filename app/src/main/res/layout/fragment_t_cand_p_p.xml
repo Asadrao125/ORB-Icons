@@ -7,13 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingTop="@dimen/_50sdp"
+        android:background="@drawable/background2"
         tools:context=".fragments.LoginFragment">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/background2" />
 
         <LinearLayout
             android:layout_width="match_parent"
