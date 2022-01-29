@@ -29,7 +29,10 @@ import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.model.AppModel
 import java.io.ByteArrayOutputStream
 
-class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
+class AppsAdapter(
+    var context: Context,
+    var list: ArrayList<AppModel>
+) :
     RecyclerView.Adapter<AppsAdapter.MyViewHolder>() {
     var iconNew: String = ""
     lateinit var adapter: ImageAdapter
@@ -166,10 +169,6 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
         imgApp.setImageBitmap(StringToBitMap(list.get(position).icon))
         edtTitle.setText(title)
 
-        /*val iconPackList: ArrayList<Drawable> = IconPacks.getIconPack1(context)
-        adapter = ImageAdapter(context, iconPackList)
-        imageRecyclerView.adapter = adapter*/
-
         spIconPacks.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -218,6 +217,7 @@ class AppsAdapter(var context: Context, var list: ArrayList<AppModel>) :
             } else {
                 list.get(position).name = edtTitle.text.toString().trim()
                 list.get(position).icon = iconNew
+
                 notifyItemChanged(position)
                 sharedPref.setAllAppsLocal(list)
                 dialog.dismiss()

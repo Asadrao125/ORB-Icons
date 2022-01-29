@@ -60,7 +60,6 @@ class HomeFragment : BaseFragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (sharedPref.read("apps", "").equals("")) {
                 val list: ArrayList<AppModel> = getInstalledApps()
-
                 if (!sharedPref.read("size", "").equals("" + list.size)) {
                     setAdapter(sharedPref.setAllAppsLocal(list))
                     sharedPref.write("size", "" + list.size)
