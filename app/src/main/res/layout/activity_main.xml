@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/_35sdp">
+            android:paddingBottom="@dimen/_36sdp">
 
             <FrameLayout
                 android:id="@+id/mainContainer"
