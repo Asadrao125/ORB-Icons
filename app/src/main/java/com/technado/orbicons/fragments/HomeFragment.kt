@@ -1,6 +1,7 @@
 package com.technado.orbicons.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.graphics.Bitmap
@@ -18,6 +19,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +35,8 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.core.content.ContextCompat.getSystemService
+
 
 class HomeFragment : BaseFragment() {
     var binding: HomeFragmentBinding? = null
@@ -87,8 +92,9 @@ class HomeFragment : BaseFragment() {
 
         binding?.edtSearch?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                val text = s.toString()
-                if (text.length >= 0) {
+                val text = s.toString().trim()
+                if (text.length > 0) {
+                    binding?.imgClear?.visibility = View.VISIBLE
                     val newlist: ArrayList<AppModel> = ArrayList()
                     val oldList: ArrayList<AppModel> = sharedPref.getAllAppsLocal()
                     for (l in 0 until oldList.size) {
@@ -105,11 +111,29 @@ class HomeFragment : BaseFragment() {
                     }
                     adapter = AppsAdapter(getActivityContext!!, newlist)
                     recyclerView.adapter = adapter
+                } else {
+
+                    binding?.edtSearch?.clearFocus()
+                    val imm: InputMethodManager =
+                        (getActivityContext!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?)!!
+                    imm.hideSoftInputFromWindow(view?.windowToken, 0)
+
+                    binding?.imgClear?.visibility = View.GONE
+                    adapter = AppsAdapter(getActivityContext!!, sharedPref.getAllAppsLocal())
+                    recyclerView.adapter = adapter
                 }
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        })
+
+        binding?.imgClear?.setOnClickListener(View.OnClickListener {
+            binding?.edtSearch?.setText("")
+            binding?.edtSearch?.clearFocus()
+            val imm: InputMethodManager =
+                (getActivityContext!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?)!!
+            imm.hideSoftInputFromWindow(view?.windowToken, 0)
         })
 
         return binding?.root
