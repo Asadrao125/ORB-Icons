@@ -27,6 +27,6 @@ class TCandPPFragment(val title: String) : BaseFragment() {
     }
 
     override fun setTitlebar(titlebar: Titlebar) {
-        titlebar.setTitle(getActivityContext!!, title)
+        titlebar.setTitleForth(getActivityContext!!, title)
     }
 }

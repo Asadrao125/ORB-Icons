@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
@@ -67,23 +68,31 @@ class PreLoginFragment : BaseFragment() {
         })
 
         tvAccept.setOnClickListener(View.OnClickListener {
-            if (i == 1) {
-                getActivityContext!!.clearBackStack()
-                getActivityContext?.replaceFragment(
-                    HomeFragment(),
-                    HomeFragment::class.java.simpleName,
-                    true,
-                    true
-                )
-                dialog.dismiss()
-            } else if (i == 0) {
-                getActivityContext?.replaceFragment(
-                    LoginFragment(),
-                    LoginFragment::class.java.simpleName,
-                    true,
-                    true
-                )
-                dialog.dismiss()
+            if (cbPrivacyPolicy.isChecked && cbTermsConditins.isChecked) {
+                if (i == 1) {
+                    getActivityContext!!.clearBackStack()
+                    getActivityContext?.replaceFragment(
+                        HomeFragment(),
+                        HomeFragment::class.java.simpleName,
+                        true,
+                        true
+                    )
+                    dialog.dismiss()
+                } else if (i == 0) {
+                    getActivityContext?.replaceFragment(
+                        LoginFragment(),
+                        LoginFragment::class.java.simpleName,
+                        true,
+                        true
+                    )
+                    dialog.dismiss()
+                }
+            } else {
+                Toast.makeText(
+                    getActivityContext!!,
+                    "Terms and Conditions required",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 

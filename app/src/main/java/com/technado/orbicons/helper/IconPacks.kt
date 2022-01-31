@@ -15,35 +15,11 @@ class IconPacks {
             imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
             imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
 
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
-
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
-
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
-
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
-
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic6)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic7)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic8)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic9)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic10)!!)
 
             imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
             imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
@@ -60,17 +36,23 @@ class IconPacks {
             imageList.add(ContextCompat.getDrawable(context, R.drawable.phone2)!!)
             imageList.add(ContextCompat.getDrawable(context, R.drawable.love)!!)
             imageList.add(ContextCompat.getDrawable(context, R.drawable.phone3)!!)
+
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic6)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic7)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic8)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic9)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic10)!!)
             return imageList
         }
 
         fun getIconPack3(context: Context): ArrayList<Drawable> {
             val imageList: ArrayList<Drawable> = ArrayList()
 
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img1)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img2)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img3)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img4)!!)
-            imageList.add(ContextCompat.getDrawable(context, R.drawable.img5)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic6)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic7)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic8)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic9)!!)
+            imageList.add(ContextCompat.getDrawable(context, R.drawable.ic10)!!)
             return imageList
         }
 

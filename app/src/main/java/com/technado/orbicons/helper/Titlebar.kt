@@ -42,6 +42,7 @@ class Titlebar : RelativeLayout {
 
         binding?.ivBack?.visibility = View.GONE
         binding?.ivMenu?.visibility = View.VISIBLE
+        binding?.ivBack2?.visibility = View.GONE
         binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
 
         binding?.tvTitleRed?.text = title
@@ -63,6 +64,7 @@ class Titlebar : RelativeLayout {
 
         binding?.ivBack?.visibility = View.VISIBLE
         binding?.ivMenu?.visibility = View.GONE
+        binding?.ivBack2?.visibility = View.GONE
         binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
 
         binding?.tvTitleRed?.text = title
@@ -84,9 +86,32 @@ class Titlebar : RelativeLayout {
 
         binding?.ivBack?.visibility = View.GONE
         binding?.ivMenu?.visibility = View.GONE
+        binding?.ivBack2?.visibility = View.GONE
         binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
 
         binding?.tvTitleWhite?.text = title
+    }
+
+    fun setTitleForth(getActivityContext: MainActivity, title: String) {
+        setHideTitle()
+        binding?.tvTitleRed?.visibility = VISIBLE
+        binding?.tvTitleWhite?.visibility = GONE
+
+        binding?.ivBack?.visibility = View.GONE
+        binding?.ivMenu?.visibility = View.VISIBLE
+        binding?.ivBack2?.visibility = View.VISIBLE
+        binding?.rlTitlebarMainLayout?.setVisibility(View.VISIBLE)
+
+        binding?.tvTitleRed?.text = title
+        binding?.tvTitleWhite?.text = title
+
+        binding?.ivMenu?.setOnClickListener {
+            getActivityContext.openDrawer()
+        }
+
+        binding?.ivBack2?.setOnClickListener(OnClickListener {
+            getActivityContext.onBackPressed()
+        })
     }
 
     fun hideTitleBar() {

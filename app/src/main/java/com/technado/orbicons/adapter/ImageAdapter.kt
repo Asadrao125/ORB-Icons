@@ -35,6 +35,8 @@ class ImageAdapter(var context: Context, var list: ArrayList<Drawable>) :
         if (selectedPos == position) {
             holder.itemView.background =
                 ContextCompat.getDrawable(context, R.drawable.app_selector_background)!!
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
 
     }

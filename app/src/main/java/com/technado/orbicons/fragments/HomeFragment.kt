@@ -37,7 +37,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import androidx.core.content.ContextCompat.getSystemService
 
-
 class HomeFragment : BaseFragment() {
     var binding: HomeFragmentBinding? = null
     lateinit var recyclerView: RecyclerView
