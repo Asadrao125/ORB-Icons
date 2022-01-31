@@ -15,18 +15,22 @@ import androidx.databinding.DataBindingUtil
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
 import com.technado.orbicons.databinding.PreLoginFragmentBinding
+import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.helper.Titlebar
 
 class PreLoginFragment : BaseFragment() {
     var binding: PreLoginFragmentBinding? = null
     lateinit var cbPrivacyPolicy: CheckBox
     lateinit var cbTermsConditins: CheckBox
+    lateinit var sharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pre_login, container, false)
+
+        sharedPref = SharedPref(getActivityContext!!)
 
         binding?.loginWithGoogle?.setOnClickListener(View.OnClickListener {
             agreementDialog(1)
@@ -70,6 +74,9 @@ class PreLoginFragment : BaseFragment() {
         tvAccept.setOnClickListener(View.OnClickListener {
             if (cbPrivacyPolicy.isChecked && cbTermsConditins.isChecked) {
                 if (i == 1) {
+
+                    sharedPref.write("login", "true")
+
                     getActivityContext!!.clearBackStack()
                     getActivityContext?.replaceFragment(
                         HomeFragment(),

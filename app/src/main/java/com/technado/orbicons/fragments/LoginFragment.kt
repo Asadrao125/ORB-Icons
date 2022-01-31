@@ -16,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.technado.demoapp.base.BaseFragment
 import com.technado.orbicons.R
 import com.technado.orbicons.databinding.LoginFragmentBinding
+import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.helper.Titlebar
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -23,6 +24,7 @@ class LoginFragment : BaseFragment() {
     var binding: LoginFragmentBinding? = null
     lateinit var edtPassword: TextInputEditText
     lateinit var edtEmail: TextInputEditText
+    lateinit var sharedPref: SharedPref
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -32,6 +34,8 @@ class LoginFragment : BaseFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         getActivityContext!!.lockMenu()
+
+        sharedPref = SharedPref(getActivityContext!!)
 
         edtPassword = binding?.edtPassword!!
         edtEmail = binding?.edtEmail!!
@@ -56,6 +60,7 @@ class LoginFragment : BaseFragment() {
                 edtPassword.setError("Password Length")
                 edtPassword.requestFocus()
             } else {
+                sharedPref.write("login", "true")
                 getActivityContext!!.clearBackStack()
                 getActivityContext?.replaceFragment(
                     HomeFragment(),

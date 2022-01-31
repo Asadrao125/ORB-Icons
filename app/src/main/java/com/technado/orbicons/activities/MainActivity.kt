@@ -14,12 +14,14 @@ import com.technado.demoapp.base.BaseActivity
 import com.technado.orbicons.R
 import com.technado.orbicons.databinding.MainActivityBinding
 import com.technado.orbicons.fragments.*
+import com.technado.orbicons.helper.SharedPref
 import com.technado.orbicons.helper.Titlebar
 import java.io.FileNotFoundException
 import java.io.InputStream
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     var binding: MainActivityBinding? = null
+    lateinit var sharedPref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         setMainFrameLayoutID()
         setListener()
+
+        sharedPref = SharedPref(this)
 
         binding?.imgClose?.setOnClickListener(View.OnClickListener {
             closeDrawers()
@@ -42,7 +46,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             closeDrawers()
         })
 
-        replaceFragment(PreLoginFragment(), PreLoginFragment::class.java.simpleName, true, false)
+        if (sharedPref.read("login", "").equals("true")) {
+            replaceFragment(HomeFragment(), HomeFragment::class.java.simpleName, true, false)
+        } else {
+            replaceFragment(
+                PreLoginFragment(),
+                PreLoginFragment::class.java.simpleName,
+                true,
+                false
+            )
+        }
     }
 
     fun setListener() {
@@ -173,6 +186,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             R.id.llLogout -> {
+                sharedPref.write("login", "false")
+                clearBackStack()
+                replaceFragment(
+                    PreLoginFragment(),
+                    PreLoginFragment::class.java.simpleName,
+                    true,
+                    true
+                )
                 closeDrawers()
             }
         }
