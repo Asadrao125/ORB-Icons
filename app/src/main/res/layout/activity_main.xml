@@ -8,7 +8,7 @@
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_23sdp">
+        android:layout_marginTop="@dimen/_24sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,33 +40,53 @@
                 android:background="@android:color/holo_red_dark"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgClose"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_gravity="end"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:src="@drawable/cross2" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imgClose"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:src="@drawable/cross2" />
+
+                    <TextView
+                        android:id="@+id/tvetLauncher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/selector"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/set_launcher"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_90sdp"
                         android:layout_gravity="center">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/imageViewProfile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/circle"
-                            android:padding="@dimen/_1sdp"
-                            android:src="@mipmap/ic_launcher"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_placeholder"
                             app:civ_border_color="@color/white"
                             app:civ_border_width="1dp" />
 
@@ -130,7 +150,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"
@@ -159,7 +178,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"
@@ -188,7 +206,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"
@@ -216,7 +233,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"
@@ -245,7 +261,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"
@@ -274,7 +289,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/selector"
                         android:orientation="horizontal"

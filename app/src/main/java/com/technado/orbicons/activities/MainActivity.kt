@@ -1,7 +1,11 @@
 package com.technado.orbicons.activities
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.provider.Settings
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -30,6 +34,18 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setMainFrameLayoutID()
         setListener()
 
+        if (isMyLauncherDefault()) {
+            binding?.tvetLauncher?.text = "Default Launcher"
+        } else {
+            binding?.tvetLauncher?.text = "Set Launcher"
+        }
+
+        binding?.tvetLauncher?.setOnClickListener(View.OnClickListener {
+            closeDrawers()
+            val intent = Intent(Settings.ACTION_HOME_SETTINGS)
+            startActivity(intent)
+        })
+
         sharedPref = SharedPref(this)
 
         binding?.imgClose?.setOnClickListener(View.OnClickListener {
@@ -56,6 +72,32 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 false
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isMyLauncherDefault()) {
+            binding?.tvetLauncher?.text = "Default Launcher"
+        } else {
+            binding?.tvetLauncher?.text = "Set Launcher"
+        }
+    }
+
+    fun isMyLauncherDefault(): Boolean {
+        val filter = IntentFilter(Intent.ACTION_MAIN)
+        filter.addCategory(Intent.CATEGORY_HOME)
+        val filters: MutableList<IntentFilter> = ArrayList()
+        filters.add(filter)
+        val myPackageName: String = getPackageName()
+        val activities: List<ComponentName> = ArrayList()
+        val packageManager = getPackageManager() as PackageManager
+        packageManager.getPreferredActivities(filters, activities, "com.technado.orbicons")
+        for (activity in activities) {
+            if (myPackageName == activity.packageName) {
+                return true
+            }
+        }
+        return false
     }
 
     fun setListener() {

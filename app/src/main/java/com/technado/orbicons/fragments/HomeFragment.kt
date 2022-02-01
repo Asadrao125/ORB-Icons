@@ -138,7 +138,7 @@ class HomeFragment : BaseFragment() {
             imm.hideSoftInputFromWindow(view?.windowToken, 0)
         })
 
-        if (isMyLauncherDefault()) {
+        /*if (isMyLauncherDefault()) {
             binding?.btnSetLauncher?.visibility = View.GONE
         } else {
             binding?.btnSetLauncher?.visibility = View.VISIBLE
@@ -147,7 +147,7 @@ class HomeFragment : BaseFragment() {
         binding?.btnSetLauncher?.setOnClickListener(View.OnClickListener {
             val intent = Intent(Settings.ACTION_HOME_SETTINGS)
             startActivity(intent)
-        })
+        })*/
 
         return binding?.root
     }
@@ -160,9 +160,6 @@ class HomeFragment : BaseFragment() {
         val myPackageName: String = getActivityContext!!.getPackageName()
         val activities: List<ComponentName> = ArrayList()
         val packageManager = getActivityContext!!.getPackageManager() as PackageManager
-
-        // You can use name of your package here as third argument
-        //packageManager.getPreferredActivities(filters, activities, null)
         packageManager.getPreferredActivities(filters, activities, "com.technado.orbicons")
         for (activity in activities) {
             if (myPackageName == activity.packageName) {
