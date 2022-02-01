@@ -186,8 +186,7 @@
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
-                            android:background="@drawable/white_shape"
-                            android:src="@drawable/downloads" />
+                            android:src="@drawable/ic_icon_pack" />
 
                         <TextView
                             android:layout_width="wrap_content"
