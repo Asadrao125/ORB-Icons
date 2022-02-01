@@ -80,7 +80,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             val last: Fragment = fragments.get(fragments.size - 1)
             supportFragmentManager.popBackStack()
         } else {
-            finish()
+            //finish()
             //val exitDialog = ExitDialog()
             //exitDialog.show(supportFragmentManager, "exitDialog")
         }

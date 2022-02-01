@@ -1,9 +1,13 @@
 package com.technado.orbicons.fragments
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -12,6 +16,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Looper.getMainLooper
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
@@ -20,7 +25,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +39,6 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.core.content.ContextCompat.getSystemService
 
 class HomeFragment : BaseFragment() {
     var binding: HomeFragmentBinding? = null
@@ -135,7 +138,38 @@ class HomeFragment : BaseFragment() {
             imm.hideSoftInputFromWindow(view?.windowToken, 0)
         })
 
+        if (isMyLauncherDefault()) {
+            binding?.btnSetLauncher?.visibility = View.GONE
+        } else {
+            binding?.btnSetLauncher?.visibility = View.VISIBLE
+        }
+
+        binding?.btnSetLauncher?.setOnClickListener(View.OnClickListener {
+            val intent = Intent(Settings.ACTION_HOME_SETTINGS)
+            startActivity(intent)
+        })
+
         return binding?.root
+    }
+
+    fun isMyLauncherDefault(): Boolean {
+        val filter = IntentFilter(Intent.ACTION_MAIN)
+        filter.addCategory(Intent.CATEGORY_HOME)
+        val filters: MutableList<IntentFilter> = ArrayList()
+        filters.add(filter)
+        val myPackageName: String = getActivityContext!!.getPackageName()
+        val activities: List<ComponentName> = ArrayList()
+        val packageManager = getActivityContext!!.getPackageManager() as PackageManager
+
+        // You can use name of your package here as third argument
+        //packageManager.getPreferredActivities(filters, activities, null)
+        packageManager.getPreferredActivities(filters, activities, "com.technado.orbicons")
+        for (activity in activities) {
+            if (myPackageName == activity.packageName) {
+                return true
+            }
+        }
+        return false
     }
 
     fun convertBitmapToString(bitmap: Bitmap): String? {

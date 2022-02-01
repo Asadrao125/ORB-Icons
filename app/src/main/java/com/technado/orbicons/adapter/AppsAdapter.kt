@@ -169,22 +169,27 @@ class AppsAdapter(
         imgApp.setImageBitmap(StringToBitMap(list.get(position).icon))
         edtTitle.setText(title)
 
+        var listDrawable: ArrayList<Drawable> = ArrayList()
+
         spIconPacks.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 if (p2 == 0) {
-                    setAdapter(imageRecyclerView, IconPacks.getIconPack1(context))
+                    listDrawable = IconPacks.getIconPack1(context)
                 } else if (p2 == 1) {
-                    setAdapter(imageRecyclerView, IconPacks.getIconPack2(context))
+                    listDrawable = IconPacks.getIconPack2(context)
                 } else if (p2 == 2) {
-                    setAdapter(imageRecyclerView, IconPacks.getIconPack3(context))
+                    listDrawable = IconPacks.getIconPack3(context)
                 } else if (p2 == 3) {
-                    setAdapter(imageRecyclerView, IconPacks.getIconPack4(context))
+                    listDrawable = IconPacks.getIconPack4(context)
                 } else if (p2 == 4) {
-                    setAdapter(imageRecyclerView, IconPacks.getIconPack5(context))
+                    listDrawable = IconPacks.getIconPack5(context)
                 }
+                adapter = ImageAdapter(context, listDrawable)
+                imageRecyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -192,11 +197,11 @@ class AppsAdapter(
             RecyclerItemClickListener(context, imageRecyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-                        imgApp.setImageDrawable(IconPacks.getIconPack1(context).get(position))
+                        imgApp.setImageDrawable(listDrawable.get(position))
                         iconNew =
                             convertBitmapToString(
                                 drawableToBitmap(
-                                    IconPacks.getIconPack1(context).get(position)
+                                    listDrawable.get(position)
                                 )!!
                             )!!
                         adapter.selectedPos = position
@@ -230,11 +235,6 @@ class AppsAdapter(
         )
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
-    }
-
-    fun setAdapter(imageRecyclerView: RecyclerView, iconPackList: ArrayList<Drawable>) {
-        adapter = ImageAdapter(context, iconPackList)
-        imageRecyclerView.adapter = adapter
     }
 
     fun convertBitmapToString(bitmap: Bitmap): String? {
