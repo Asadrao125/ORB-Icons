@@ -89,10 +89,6 @@ class HomeFragment : BaseFragment() {
             }
         }, 10)
 
-        // Fast Recyclerview Scrollbar
-        binding?.fastScroller?.setRecyclerView(recyclerView)
-        recyclerView.setOnScrollListener(binding?.fastScroller?.getOnScrollListener())
-
         val sdf = SimpleDateFormat("EEEE, dd MMM")
         binding?.tvDate?.text = sdf.format(Date())
 
