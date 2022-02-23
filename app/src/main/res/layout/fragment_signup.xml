@@ -51,7 +51,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:background="@drawable/selector_edittext"
                         android:hint="Full Name"
                         android:textColorHint="@color/red"

@@ -13,6 +13,7 @@
     <color name="blue">#0078ff</color>
     <color name="red">#ed1b24</color>
     <color name="dark_blue">#001645</color>
+    <color name="dark_blue_transparent">#66001645</color>
 
     <color name="trans">#00000000</color>
 

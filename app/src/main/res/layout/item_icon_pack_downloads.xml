@@ -4,13 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_10sdp"
-    android:focusable="false"
     android:layout_marginRight="@dimen/_10sdp"
     app:cardCornerRadius="@dimen/_5sdp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:focusable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -53,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -84,7 +81,6 @@
                     android:src="@drawable/file" />
 
                 <TextView
-                    android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -102,13 +98,6 @@
                 android:text="Price: $1.2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/download_2" />
 
         </LinearLayout>
 
