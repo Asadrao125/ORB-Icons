@@ -120,6 +120,8 @@ class AppsAdapter(var context: MainActivity) :
         }
         list.removeAt(position)
         notifyItemChanged(position)
+        //Additional Line
+        sharedPref.write("size", list.size)
         addAll(sharedPref.setAllAppsLocal(list))
         notifyDataSetChanged()
     }

@@ -33,6 +33,7 @@ class IconPackAdapter(var context: MainActivity, var list: ArrayList<IconPacksMo
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvPackName.text = list.get(position).packName
         holder.tvPackPrice.text = list.get(position).packPrice
+        holder.image.setImageDrawable(list.get(position).thumbnail)
 
         if (list.get(position).isPackPurchased == 1) {
             holder.itemView.isEnabled = true
